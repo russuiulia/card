@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>Darījuma autorizācija DEFAULT TEMPLATE</title>
+        %%cardinfo_js%%
+        <style type="text/css">
+            span.ecomm_validation_error {
+                color: red;
+                display: block;
+            }
+            .hidden {
+                display: none;
+            }
+        </style>
+    </head>
+<body>
+
+<!-- Merchant ID -->
+<span style="display:none;">%%merchantid%%</span>
+
+<table width="100%" height="100%"><tr><td align="center">
+  <table border="1" bordercolor="#F5F5F5" width="500" height="330" cellspacing="0" cellpadding="4">
+     <tr height="300">
+     <td width="150" align="center" bgcolor="#FF0000">
+       <font color="#FFE4E1" size="6">Online Bookstore</font>
+       </td>
+      <td width="350" align="right" valign="top">
+      <table width="100%" cellspacing="0" style="font: normal 9pt Verdana">
+      <tr>
+      <td align="right" valign="top">
+       <img src="images/TK-logo.gif">
+       <br><br>
+      </td>
+      </tr>
+      <tr>
+      <td colspan="2" bgcolor="#F5F5F5">
+      <font color="#808080" size="3"><b>Kartes dati</b></font>
+      </td>
+      </tr>
+      <tr>
+      <td align="center">
+       <br><br><br>
+          %%formdef%%
+          <table border="1" bordercolor="#F5F5F5" cellspacing="0" cellpadding="1" style="font: normal 8pt Verdana">
+          <tr><td>Vārds, Uzvārds</td><td>%%cardname%%</td></tr>
+          <tr><td>Kartes nr.</td><td>%%cardnr%%</td></tr>
+          <tr class="card_expiry"><td>Derīga līdz (MM/YY)</td><td>%%expmonth_select%%/%%expyear_select%%</td></tr>
+          <tr class="card_cvc2"><td id="cvc2_label">CVC2 vai CVV2</td><td>%%cvc2%%</td></tr>
+          <tr><td>Summa</td><td>%%amount%%</td></tr>
+          <tr><td>Valūta</td><td>%%ccyalpha%%</td></tr>
+          <tr><td>Apraksts</td><td>%%description%%</td></tr>
+         <tr><td colspan="2"><input type="submit"value="Nosūtīt" style="font: bold 8pt Verdana"></td></tr>
+         </table>
+         </form>
+       </td>
+      </tr>
+      </table>
+     </td>
+    </tr>
+    <tr height="30">
+     <td colspan="2" align="center" valign="middle" bgcolor="#C0C0C0">
+       <b><font color="#FFFFFF" size="4">e-commerce DEMO</font></b>
+     </td>
+    </tr>
+   </table>
+</td></tr></table>
+</body>
+</html>

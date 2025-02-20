@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Transaction authorization</title>
+
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/maib/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/maib/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/maib/images/favicon-16x16.png">
+  <link rel="manifest" href="images/maib/webmanifest/site.webmanifest">
+  <link rel="mask-icon" href="images/maib/images/safari-pinned-tab.svg" color="#40c1ac">
+  <link rel="shortcut icon" href="images/maib/images/favicon.ico">
+  <meta name="theme-color" content="#40C1AC">
+  %%javascript%%
+  %%applepay_js%%
+  %%applepay_css%%
+  %%googlepay_js%%
+  <link rel="stylesheet" type="text/css" href="images/maib/css/index.css">
+</head>
+<body>
+  <main>
+    <div class="main__block">
+      <div class="main__block_header">
+        <div class="haeder_button back_button__block">
+          <button type="button" class="back back_btn payment back_button">
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 13L1 7L7 1" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Back
+          </button>
+        </div>
+        <img class="header__logo" src="images/maib/images/logo.svg" alt="Maib logo">
+      </div>
+      <div class="main__block_body" style="opacity: 0;">
+        <div class="body__logo">
+          <img src="%%logo_url%%">
+        </div>
+        <div class="payment__block">
+          <div class="one_click_payment__block one_click visible">
+            <div class="sum__block">
+              <div class="sum__block_line sum__block_clamp">
+                <label>Amount:</label>
+
+                <strong class="sum__clamp sum__clamp_one ">%%amount%%&nbsp;%%ccyalpha%%</strong>
+              </div>
+
+              <div class="sum__block_line sum__block_clamp">
+                <label>Description:</label>
+
+                <span class="sum__clamp">%%description%%</span>
+              </div>
+            </div>
+
+            <span class="buttons-title">Select payment method</span>
+
+            <div class="payment_buttons__block">
+              <div lang="en" id="applebutton" class="apple-pay-button-buy apple-pay-button" style="display: none"></div>
+			  <div id="google-pay-button" data-color="default"></div>
+              <div class="open-form-button by_card_button">
+                <div class="open-form-button-content">
+                  <span>Buy with</span>
+                  <img src="images/maib/images/visa.svg" style="width: 50px; margin-left: 9px; margin-right: 9px;">
+                  <img src="images/maib/images/mastercard.svg" style="width: 30px;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="by_card_payment__block by_card">
+            %%formdef%%
+            <div class="body__columns">
+              <div class="body__right_column">
+                <h2 class="column__title">Payment details</h2>
+
+                <div class="sum__block">
+                  <div class="sum__block_line sum__block_clamp">
+                    <label>Amount:</label>
+
+                    <strong class="sum__clamp">%%amount%%&nbsp;%%ccyalpha%%</strong>
+                  </div>
+
+                  <div class="sum__block_line sum__block_clamp">
+                    <label>Description:</label>
+
+                    <span class="sum__clamp">%%description%%</span>
+                  </div>
+                </div>
+
+                <div class="card__block">
+                  <picture class="image-large">
+                    <source srcset="images/maib/images/card.webp " type="image/webp">
+                    <source srcset="images/maib/images/card.png " type="image/png">
+
+                    <img src="images/maib/images/card.png" alt="">
+                  </picture>
+
+                  <picture class="card__step image_cardname image-large">
+                    <source srcset="images/maib/images/card_1.webp " type="image/webp">
+                    <source srcset="images/maib/images/card_1.png " type="image/jpeg">
+
+                    <img class="card__step image_cardname" src="images/maib/images/card_1.png" alt="">
+                  </picture>
+
+                  <picture class="card__step image_cardnr image-large">
+                    <source srcset="images/maib/images/card_2.webp " type="image/webp">
+                    <source srcset="images/maib/images/card_2.png " type="image/jpeg">
+
+                    <img class="card__step image_cardnr" src="images/maib/images/card_2.png" alt="">
+                  </picture>
+
+                  <picture class="card__step image_expiryDate image-large">
+                    <source srcset="images/maib/images/card_3.webp " type="image/webp">
+                    <source srcset="images/maib/images/card_3.png " type="image/jpeg">
+
+                    <img class="card__step image_expiryDate" src="images/maib/images/card_3.png" alt="">
+                  </picture>
+
+                  <picture class="card__step image_cvc2 image-large">
+                    <source class="image_cvc2" srcset="images/maib/images/card_4.webp " type="image/webp">
+                    <source class="image_cvc2" srcset="images/maib/images/card_4.png " type="image/jpeg">
+
+                    <img class="card__step image_cvc2" src="images/maib/images/card_4.png" alt="">
+                  </picture>
+                </div>
+              </div>
+
+              <div class="body__left_column">
+                <h2 class="column__title">Card details</h2>
+
+                <div class="form__col">
+                  <div class="form__col_helper image_cardname">
+                    <picture class="card__step image_cardname image-mobile">
+                      <source srcset="images/maib/images/card_1.webp " type="image/webp">
+                      <source srcset="images/maib/images/card_1.png " type="image/png">
+
+                      <img class="image_cardname" src="images/maib/images/card_1.png" alt="">
+                    </picture>
+                  </div>
+
+                  <input class="form__input name-input" name="cardname" id="cardname" type="text"
+                    placeholder="Ex: Ion Popa" autocomplete="off" required maxlength="100" oninput="lettersOnly(this)">
+
+                  <label class="label" for="cardname">Name / Surname<span>*</span></label>
+                </div>
+
+                <div class="form__col">
+                  <div class="form__col_helper image_cardnr">
+                    <picture class="card__step image_cardnr image-mobile">
+                      <source srcset="images/maib/images/card_2.webp " type="image/webp">
+                      <source srcset="images/maib/images/card_2.png " type="image/png">
+
+                      <img class="image_cardnr" src="images/maib/images/card_2.png" alt="">
+                    </picture>
+                  </div>
+
+                  <input class="form__input number-input" name="cardnr" id="cardnr" type="tel"
+                    placeholder="XXXX XXXX XXXX XXXX" autocomplete="cc-number" required maxlength="19" size="19">
+
+                  <label class="label" for="cardnr">Card number<span>*</span></label>
+                </div>
+
+                <div class="form__col">
+                  <div class="form__col_helper image_expiryDate">
+                    <picture class="card__step image_expiryDate image-mobile">
+                      <source srcset="images/maib/images/card_3.webp " type="image/webp">
+                      <source srcset="images/maib/images/card_3.png " type="image/png">
+
+                      <img class="image_expiryDate" src="images/maib/images/card_3.png" alt="">
+                    </picture>
+                  </div>
+
+                  <div class="form__col_helper image_cvc2">
+                    <picture class="card__step image_cvc2 image-mobile">
+                      <source srcset="images/maib/images/card_4.webp " type="image/webp">
+                      <source srcset="images/maib/images/card_4.png " type="image/png">
+
+                      <img class="image_cvc2" src="images/maib/images/card_4.png" alt="">
+                    </picture>
+                  </div>
+
+                  <div class="form__row">
+                    <div class="form__col form__col_expiration">
+                      <input class="form__input expiry-input" id="expiryDate" type="tel" placeholder="MM/YY"
+                        autocomplete="cc-exp" required minlength="5" maxlength="5">
+
+                      <div style="display: none; visibility: hidden;">
+                        <input hidden name="validMONTH" id="validMONTH" autocomplete="cc-exp-month">
+
+                        <input hidden name="validYEAR" id="validYEAR" autocomplete="cc-exp-year">
+                      </div>
+
+                      <label class="label" for="expiryDate">Expiry date<span>*</span></label>
+                    </div>
+
+                    <div class="form__col form__col_cvc">
+                      <input class="form__input securitycode-input" name="cvc2" id="cvc2" type="password"
+                        placeholder="CVC2/CVV2" autocomplete="cc-csc" pattern="[0-9]*" required minlength="3"
+                        maxlength="3" oninput="numbersOnly(this)">
+
+                      <button type="button" class="form__show-code-button" onclick="showCodeClick(this)">
+                        <img class="form__code-icon form__code-icon_show" src="images/maib/images/eye-show.svg" alt="">
+
+                        <img class="form__code-icon form__code-icon_hide" src="images/maib/images/eye-hide.svg" alt="">
+                      </button>
+
+                      <label class="label" for="cvc2">Security code<span>*</span></label>
+                    </div>
+                  </div>
+                </div>
+				<div class="save_card" style="display: none;">          
+					<div class="labelse">Save card details<span class="check_box">%%save_card%%</span></div>
+				</div>
+                <div class="button__block">
+                  <button class="button button__large button__green" id="submit_button" type="submit">Pay</button>
+                </div>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="main__block_footer">
+        <div class="footer__left_icons">
+          <img src="images/maib/images/visa-secure.svg" alt="Visa secure">
+          <img src="images/maib/images/mc-idcheck.svg" alt="Mastercard IDcheck">
+        </div>
+
+        <div class="footer__right_icons">
+          <img src="images/maib/images/3d-secure.svg" alt="3d secure">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script defer src="images/maib/js/external-library.js"></script>
+
+  <script>
+    let inputProperties = {
+      cardname: {
+        errors: {
+          required: 'Enter cardholder name',
+        },
+      },
+      cardnr: {
+        requiredLength: 19,
+        errors: {
+          required: 'Enter the card number',
+          length: 'The card number should be 16 digits',
+        },
+      },
+      expiryDate: {
+        requiredLength: 5,
+        errors: {
+          required: 'Enter the card expiration date',
+          length: 'Enter the card expiration date',
+          value: 'Expired card',
+        },
+      },
+      cvc2: {
+        requiredLength: 3,
+        errors: {
+          required: 'Enter the CVV2/CVC2 code on the back of the card',
+          length: 'CVC2/CVV2 code should be 3 characters',
+        },
+      },
+    };
+    let hasErrors = 0;
+    let expirationDateMask;
+    let cardNumberMask;
+    const now = new Date();
+    const curYear = now.getFullYear() - 2000;
+    const curMonth = now.getMonth();
+
+    function getElementsArray(cssSelector) {
+      return Array.prototype.slice.call(document.querySelectorAll(cssSelector));
+    }
+
+    function lettersOnly(input) {
+      input.value = input.value.replace(/[^a-z- ]/gi, '');
+    }
+
+    function numbersOnly(input) {
+      input.value = input.value.replace(/[^0-9]/gi, '');
+    }
+	
+    function showCodeClick(element, hide) {
+      if (!element) element = document.querySelector('.form__show-code-button');
+
+      const input = element.previousElementSibling;
+
+      if (input.type === 'text' || hide) {
+        input.type = 'password';
+        element.classList.remove('form__show-code-button_show');
+      } else {
+        input.type = 'text';
+        element.classList.add('form__show-code-button_show');
+      }
+    }
+
+    function showError($input, errorText) {
+      const $inputWrapper = $input.closest('.form__col');
+      const $inputError = $inputWrapper.querySelector('.form__col_error');
+
+      $inputWrapper.classList.remove('has-value');
+
+      if (!$inputError) {
+        let $error = document.createElement('div');
+        $error.classList.add('form__col_error');
+        $inputWrapper.append($error);
+        $error.innerHTML = errorText;
+        $inputWrapper.classList.add('has-error');
+        hasErrors = hasErrors + 1;
+      } else {
+        $inputError.innerHTML = errorText;
+      }
+    }
+
+    function hideError($input) {
+      const $inputWrapper = $input.closest('.form__col');
+      const $inputError = $inputWrapper.querySelector('.form__col_error');
+
+      if ($inputError) {
+        $inputWrapper.classList.remove('has-error');
+        $inputError.remove();
+        hasErrors = hasErrors - 1;
+      }
+    }
+
+    function isDateValid(month, year) {
+      let y = curYear;
+      if (year > 99) y = curYear + 2000;
+      return (year > y) || (year === y && month > curMonth);
+    }
+
+    const app = {
+      init: function () {
+        this.cardTypeListener();
+        this.inputListener();
+        this.expirationDateListener();
+      },
+
+      cardTypeListener: function () {
+        const cardNumber = document.querySelector('.number-input');
+
+        if (cardNumber) {
+          cardNumberMask = new IMask(cardNumber, {
+            mask: [
+              {
+                mask: '0000 0000 0000 0000',
+                regex: '^[526]\\d{0,15}',
+                cardtype: 'mastercard',
+              },
+              {
+                mask: '0000 0000 0000 0000',
+                regex: '^4\\d{0,15}',
+                cardtype: 'visa',
+              },
+            ],
+            dispatch: function (appended, dynamicMasked) {
+              let number = (dynamicMasked.value + appended).replace(/\D/g, '');
+              for (let i = 0; i < dynamicMasked.compiledMasks.length; i++) {
+                let re = new RegExp(dynamicMasked.compiledMasks[i].regex);
+                if (number.match(re) != null) {
+                  return dynamicMasked.compiledMasks[i];
+                }
+              }
+            },
+          });
+
+          cardNumberMask.on('accept', function () {
+            if (cardNumberMask.value.length == 0) {
+              cardNumber.removeAttribute('data-card-type');
+            } else {
+              cardNumber.setAttribute('data-card-type', cardNumberMask.masked.currentMask.cardtype);
+            }
+          });
+        }
+      },
+
+      inputListener: function () {
+        let expDatePrevLength = 0;
+
+        const $inputs = getElementsArray('.form__input');
+        $inputs.forEach(inputsIterator);
+
+        function inputsIterator($input) {
+          function setDisplayBlock(image) { 
+		  
+		  image.style.display = 'block';
+		  // add
+		  if (window.innerWidth <= 767) {
+			image.style.display = 'block';
+			setTimeout(function () {
+			  image.style.display = 'none';
+			  image.style.removeProperty('opacity');
+			}, 2000);
+		  }
+		 
+		  }
+		  
+          function setDisplayNone(image) { image.style.display = 'none'; }
+
+          function showImages(inputId) {
+            getElementsArray('.image_' + inputId).forEach(setDisplayBlock);
+          }
+		  
+		 
+		   function showImagesMobile(inputId) {
+            getElementsArray('.image-mobile .image_' + inputId).forEach(setDisplayBlock);
+          }
+
+          function hideImages(inputId) {
+            const inputs = inputId
+              ? getElementsArray('.image_' + inputId)
+              : getElementsArray('.card__step');
+
+            inputs.forEach(setDisplayNone);
+          }
+
+          function showCardImage(inputId) {
+            hideImages();
+            showImages(inputId || $input.id);
+          }
+
+          $input.addEventListener('focus', onFocusListener);
+
+          function onFocusListener() {
+            showCardImage();
+
+            if ($input.id === 'cardnr') {
+              $input.value = $input.value.replace(/(\d{4})(?=.)/gi, '$1 ');
+              cardNumberMask.updateValue();
+            }
+          }
+
+          function checkError(event) {
+            const requiredLength = inputProperties[$input.id].requiredLength;
+            const errors = inputProperties[$input.id].errors;
+            const length = $input.value.length;
+            let errorText = '';
+
+            if (length === 0) {
+              showError($input, errors.required);
+              return;
+            }
+
+            const expDate = $input.value.split('/');
+            const expMonth = parseInt(expDate[0], 10);
+            const expYear = parseInt(expDate[1], 10);
+
+            if (length > 0) {
+              $input.closest('.form__col').classList.add('has-value');
+            }
+
+            if ($input.id === 'expiryDate') {
+              if (length === 2 && expDatePrevLength !== 3 && event.code !== 'Backspace') {
+                $input.value += '/';
+              } else if (length === 3 && expDatePrevLength > 3) {
+                $input.value = $input.value.substring(0, 2);
+              }
+
+              const isValid = Boolean(expMonth) && Boolean(expYear) && isDateValid(expMonth, expYear);
+              const shouldFocusOnNextField = isValid && (expDatePrevLength === 4 || expDatePrevLength === 6);
+
+              if (shouldFocusOnNextField) {
+                $inputs[3].focus();
+                showCardImage($inputs[3].id);
+              }
+
+              if ((event.type === 'blur' && length > requiredLength) || shouldFocusOnNextField) {
+                $input.value = $input.value.replace('/20', '/');
+              }
+
+              updateExpDateValue(expMonth, expYear);
+              expirationDateMask.updateValue();
+              expDatePrevLength = $input.value.length;
+
+              if (!isValid && length >= requiredLength) {
+                errorText = errors.value;
+              }
+            }
+
+            if (!errorText && requiredLength && length < requiredLength) {
+              errorText = errors.length;
+            }
+
+            if (errorText) showError($input, errorText);
+            else hideError($input);
+          }
+
+          function updateExpDateValue(expMonth, expYear) {
+            const yearInput = document.querySelector('#validYEAR');
+            const monthInput = document.querySelector('#validMONTH');
+            let year = '';
+
+            if (expYear > 1000) year = expYear.toString().substring(2);
+            else if (expYear < 100) year = expYear.toString();
+
+            monthInput.value = expMonth > 9 ? expMonth : '0' + expMonth;
+            yearInput.value = year;
+          }
+
+          $input.addEventListener('keyup', checkError);
+          $input.addEventListener('blur', onBlurListener);
+
+          function onBlurListener(event) {
+            checkError(event);
+            hideImages();
+
+            if ($input.id === 'cardnr') {
+              $input.value = $input.value.replace(/\s/gi, '');
+              cardNumberMask.updateValue();
+            }
+          }
+        }
+
+        const $input_labels = getElementsArray('.label');
+
+        $input_labels.forEach(labelIterator);
+
+        function labelIterator($label) {
+          function clickListener() {
+            $label.previousElementSibling.focus();
+          }
+
+          $label.addEventListener('click', clickListener);
+        }
+
+      },
+
+      expirationDateListener: function () {
+        const expirationDate = document.querySelector('.expiry-input');
+
+        if (!expirationDate) return;
+
+        expirationDateMask = new IMask(expirationDate, {
+          mask: 'MM{/}YY',
+          blocks: {
+            YY: {
+              mask: '0000',
+              regex: '^[2]\\d{1, 3}',
+            },
+            MM: {
+              mask: IMask.MaskedRange,
+              from: 1,
+              to: 12,
+            },
+          },
+        });
+      },
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+      app.init();
+
+      const btn = document.getElementById('submit_button');
+      btn.addEventListener('click', function (e) {
+        if (hasErrors) e.preventDefault();
+      })
+    });
+  </script>
+  
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+	const oneClick = document.querySelector('.one_click')
+    const byCard = document.querySelector('.by_card')
+    const byCardButton = document.querySelector('.by_card_button');
+    const backButton = document.querySelector('.back_button')
+	const appleButton = document.getElementById('applebutton');
+    const googlePayButton = document.getElementById('google-pay-button');
+	const saveCardElement = document.getElementById('save_card');
+	const isServer3dsApplePayFunctionPresent = typeof Server3dsApplePay === 'function';
+    const googlePayScript = document.querySelector('script[onload="googlePay.onGooglePayLoaded()"]');
+	const mainBlockBody = document.querySelector('.main__block_body');
+	
+	// add
+	setTimeout(function () {
+	if (mainBlockBody) {
+        mainBlockBody.style.opacity = '1';
+    }
+
+	}, 200);
+	
+	if (window.ApplePaySession && isServer3dsApplePayFunctionPresent) {
+	 appleButton.style.display = "block"
+    //   byCard.classList.remove('visible')
+    //   oneClick.classList.add('visible');
+    }
+	
+	if (
+    (!window.ApplePaySession && !googlePayScript.getAttribute('src')) ||
+	(!isServer3dsApplePayFunctionPresent && !googlePayScript.getAttribute('src'))
+	) {
+	oneClick.classList.remove('visible');
+    byCard.classList.add('visible')
+	}
+	
+	
+	if (saveCardElement) {
+    const saveCardClassElement = document.querySelector('.save_card');
+  
+    if (saveCardClassElement) {
+    saveCardClassElement.style.display = 'block';
+      }
+    }
+
+    byCardButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (oneClick.classList.contains('visible')) {
+        oneClick.classList.remove('visible');
+        byCard.classList.add('visible')
+        backButton.classList.add('visible')
+      }
+    })
+
+    backButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (byCard.classList.contains('visible')) {
+        byCard.classList.remove('visible');
+        oneClick.classList.add('visible')
+        backButton.classList.remove('visible')
+      }
+    })
+	});
+  </script>
+
+  <script src="%%googlepay_web_sdk_url%%" onLoad="googlePay.onGooglePayLoaded()"></script>
+  
+  <script defer async>
+    !function (d) { if (!d.currentScript) { console.log('IE only polyfills!'); var s = d.createElement('script'); s.src = 'images/maib/js/polyfill.js'; d.head.appendChild(s) } }(document)
+  </script>
+  
+</body>
+
+</html>

@@ -1,0 +1,341 @@
+@use 'reset';
+@use 'fonts';
+@use 'helpers' as *;
+
+// Variables:
+$color-background: #ECEFF1;
+$color-white: #fff;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  padding: 48px 0 132px;
+  background-color: $color-background;
+}
+
+body, input, button, textarea, select {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 0 24px;
+  max-width: 898px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-wrapper {
+  background: $color-white;
+  border: 1px solid #D3D9DC;
+  border-radius: 15px;
+
+  input {
+    font-size: 16px;
+    line-height: 19px;
+    color: #414A4E;
+  }
+
+  input::placeholder {
+    font-size: 16px;
+    line-height: 19px;
+    color: #d3d9dc;
+  }
+
+  .form-cols {
+    .col {
+      width: 50%;
+      padding: 50px 40px 55px 44px;
+      &:first-child { border-right: 1px solid #ECEFF1; }
+
+      .col-name {
+        font-size: 18px;
+        line-height: 21px;
+        color: rgba(65, 74, 78, 0.5);
+      }
+      .col-content {
+        margin-top: 36px;
+        & > .input-label,
+        & > .splitted-inputs {
+          margin-bottom: 22px;
+        }
+      }
+
+      .input-name {
+        font-size: 16px;
+        line-height: 19px;
+        color: #414A4E;
+        margin-bottom: 12px;
+      }
+
+      .input-error {
+        margin-top: 6px;
+        font-size: 11px;
+        line-height: 13px;
+        color: #ef553b;
+      }
+
+      .input-label {
+        display: block;
+
+        &[data-label-for="cardNumber"] {
+          position: relative;
+
+          &::after {
+            content: '';
+            display: block;
+            width: 27px;
+            height: 16px;
+            background-image: url('../img/cardtypes.png');
+            background-position: 50% 0;
+            background-repeat: no-repeat;
+            position: absolute;
+            right: 18px;
+            top: 52px
+          }
+
+          &[data-card-type="master"]::after { background-position: 50% -32px; }
+          &[data-card-type="visa"]::after { background-position: 50% -16px; }
+          &[data-card-type="maestro"]::after { background-position: 50% -48px; }
+        }
+
+        .input-hint {
+          font-style: italic;
+          margin-top: 12px;
+          font-size: 11px;
+          line-height: 13px;
+          color: rgba(65, 74, 78, 0.7);
+          a { color: inherit; }
+          .hint-icon {
+            @include bg-image(contain);
+            display: inline-block;
+            width: 27px;
+            min-width: 27px;
+            height: 16px;
+            vertical-align: middle;
+            &.maestro { background-image: url('../img/ms.svg'); }
+            &.master { background-image: url('../img/mc.svg'); }
+            &.visa { background-image: url('../img/visa.svg'); }
+          }
+        }
+        
+        &.cvc-code, &.card-number {
+          position: relative;
+        }
+
+        .card-help {
+          position: absolute;
+          z-index: 3;
+          top: 12px;
+          left: calc(100% + 40px);
+          width: 238px;
+          height: 144px;
+          pointer-events: none;
+          transition: opacity .3s ease;
+          @include bg-image(contain);
+          &__front { background-image: url('../img/card-help-front.png'); }
+          &__back { background-image: url('../img/card-help-back.png'); }
+
+          &:not(.active) { opacity: 0; }
+        }
+      }
+
+      .input-label {
+        input {
+          border: 1px solid #A1AAAE;
+          border-radius: 5px;
+          padding: 18px 15px;
+          width: 100%;
+          outline: 0;
+          transition: .2s ease;
+        }
+        &[data-label-for="cardNumber"] input {
+          padding: 18px 57px 18px 15px;
+        }
+      }
+
+      .exp-date-inputs {
+        border: 1px solid #A1AAAE;
+        border-radius: 5px;
+        width: 100%;
+        outline: 0;
+        transition: .2s ease;
+
+        width: 100%;
+        justify-content: flex-start;
+        overflow: hidden;
+        input {
+          width: 40px;
+          height: 100%;
+          border: 0;
+          outline: 0;
+          &:first-child {
+            padding: 18px 6px 18px 15px;
+          }
+          &:last-child {
+            padding: 18px 15px 18px 6px;
+            flex-grow: 1;
+          }
+        }
+      }
+
+      .input-label input:focus,
+      .exp-date-inputs:focus-within {
+        box-shadow: 0 0 0 2px rgba(#64A50F, .3);
+      }
+
+      .input-label.input-has-error input,
+      .exp-date-inputs.input-has-error {
+        border-color:#EF553B;
+      }
+
+      .splitted-inputs {
+        .expire-date {
+          width: 132px;
+          margin-right: 30px;
+        }
+        .cvc-code {
+          flex-grow: 1;
+        }
+      }
+      
+      button[type="submit"] {
+        appearance: none;
+        cursor: pointer;
+        background: #64A50F;
+        border-radius: 5px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: $color-white;
+        text-align: center;
+        transition: .3s ease;
+        border: 1px solid #64A50F;
+        padding: 18px;
+        width: 100%;
+
+
+        &:disabled {
+          background: rgba(100, 165, 15, 0.5);
+          border-color: rgba(100, 165, 15, 0.5);;
+          &:hover { cursor: not-allowed; }
+        }
+
+        &:not(:disabled):hover {
+          box-shadow:
+            inset 500px 0 0 0 #71c502,
+            inset -500px 0 0 0 #71c502,
+            ;
+        }
+      }
+
+      .info-item {
+        display: flex;
+        align-items: flex-start;
+        font-size: 16px;
+        line-height: 19px;
+        line-height: 19px;
+        color: #414A4E;
+        & + .info-item { margin-top: 20px; }
+        .info-title { margin-right: 20px; }
+      }
+    }
+  }
+  .form-footer {
+    border-top: 1px solid #ECEFF1;
+    padding: 12px 44px;
+    .footer-col {
+      &.secure {
+        display: flex;
+        align-items: center;
+        .secure-item {
+          @include bg-image(contain);
+          & + .secure-item { margin-left: 24px; }
+          &.visa-secure {
+            background-image: url('../img/visa_secure.svg');
+            width: 40px;
+            min-width: 40px;
+            height: 40px;
+          }
+          &.master-secure {
+            background-image: url('../img/mc_idcheck.svg');
+            width: 65px;
+            min-width: 65px;
+            height: 50px;
+          }
+        }
+      }
+
+      .processed {
+        display: flex;
+        align-items: center;
+        .icon {
+          @include bg-image(contain);
+          background-image: url('../img/lock.svg');
+          width: 18px;
+          min-width: 18px;
+          height: 18px;
+          margin-right: 9px;
+        }
+        .text {
+          font-size: 10px;
+          line-height: 12px;
+          color: #74848B;
+        }
+      }
+    }
+  }
+}
+
+.form-wrapper .form-cols .col .input-fake-label.input-has-error .exp-date-inputs {
+  border-color: #ef553b;
+}
+
+.footer {
+  margin-top: 32px;
+  .logo {
+    width: 110px;
+    height: 46px;
+    @include bg-image(contain);
+    display: inline-block;
+    background-image: url('../img/logo.png');
+  }
+}
+
+@media (max-width: 899px) {
+  .form-wrapper {
+    .form-cols {
+      flex-direction: column;
+      .col {
+        width: 100%;
+        padding: 30px 24px;
+      }
+    }
+  }
+  .form-wrapper .form-footer {
+    padding: 15px 24px;
+  }
+
+  .form-wrapper .form-cols .col .input-label .card-help { display: none; }
+
+
+}
+
+@media (max-width: 420px) {
+    // .splitted-inputs { flex-direction: column; }
+    // .form-wrapper .form-cols .col .splitted-inputs .expire-date { width: 100%; margin-right: 0; margin-bottom: 22px; }
+    // .form-wrapper .form-cols .col .splitted-inputs .cvc-code { width: 100%; }
+    .container {
+      padding: 0 6px;
+    }
+
+
+    .form-wrapper .form-cols .col .splitted-inputs .expire-date {
+      margin-right: 18px;
+    }
+}
+
+@media (max-width: 345px) {
+  .splitted-inputs { flex-direction: column; }
+  .form-wrapper .form-cols .col .splitted-inputs .expire-date { width: 100%; margin-right: 0; margin-bottom: 22px; }
+  .form-wrapper .form-cols .col .splitted-inputs .cvc-code { width: 100%; }
+}
