@@ -16,10 +16,12 @@
   <link rel="mask-icon" href="images/maib/images/safari-pinned-tab.svg" color="#40c1ac">
   <link rel="shortcut icon" href="images/maib/images/favicon.ico">
   <meta name="theme-color" content="#40C1AC">
-  %%javascript%% 
+  %%javascript%%
+  %%applepay_js%%
   %%applepay_css%%
   %%googlepay_js%%
   <link rel="stylesheet" type="text/css" href="images/maib/css/index.css">
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body>
   <main>
@@ -40,37 +42,13 @@
           <img src="%%logo_url%%">
         </div>
         <div class="payment__block">
-          <div class="one_click_payment__block one_click visible">
-            <div class="sum__block">
-              <div class="sum__block_line sum__block_clamp">
-                <label>Amount:</label>
-
-                <strong class="sum__clamp sum__clamp_one ">%%amount%%&nbsp;%%ccyalpha%%</strong>
-              </div>
-
-              <div class="sum__block_line sum__block_clamp">
-                <label>Description:</label>
-
-                <span class="sum__clamp">%%description%%</span>
-              </div>
-            </div>
-
-            <span class="buttons-title">Select payment method</span>
-
-            <div class="payment_buttons__block">
-              <div lang="en" id="applebutton" class="apple-pay-button-buy apple-pay-button" style="display: none"></div>
-			  <div id="google-pay-button" data-color="default"></div>
-              <div class="open-form-button by_card_button">
-                <div class="open-form-button-content">
-                  <span>Buy with</span>
-                  <img src="images/maib/images/visa.svg" style="width: 50px; margin-left: 9px; margin-right: 9px;">
-                  <img src="images/maib/images/mastercard.svg" style="width: 30px;">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="by_card_payment__block by_card">
+          
+          <div class="by_card_payment__block by_card visible">
+            
             %%formdef%%
+            
+            <div lang="en" id="applebutton" class="apple-pay-button-buy apple-pay-button" ></div>
+            
             <div class="body__columns">
               <div class="body__right_column">
                 <h2 class="column__title">Payment details</h2>
