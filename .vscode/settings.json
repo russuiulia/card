@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["cardname", "cardnr", "cardtype"]
+  "cSpell.words": ["cardname", "cardnr", "cardtype"],
+  "liveServer.settings.port": 5501
 }

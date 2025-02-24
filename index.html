@@ -42,9 +42,7 @@
 
     <link rel="shortcut icon" href="images/maib/images/favicon.ico" />
     %%javascript%% %%applepay_js%% %%applepay_css%% %%googlepay_js%%
-    <!-- <link rel="stylesheet" type="text/css" href="images/maib/css/index.css" /> -->
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" type="text/css" href="images/maib/css/iasig.css" />
     <style>
       .form__col_error {
         color: red;
@@ -491,16 +489,16 @@
               showImages(inputId || $input.id);
             }
 
-            $input.addEventListener('focus', onFocusListener);
+            // $input.addEventListener('focus', onFocusListener);
 
-            function onFocusListener() {
-              showCardImage();
+            // function onFocusListener() {
+            //   showCardImage();
 
-              if ($input.id === 'cardnr') {
-                $input.value = $input.value.replace(/(\d{4})(?=.)/gi, '$1 ');
-                cardNumberMask.updateValue();
-              }
-            }
+            //   if ($input.id === 'cardnr') {
+            //     $input.value = $input.value.replace(/(\d{4})(?=.)/gi, '$1 ');
+            //     cardNumberMask.updateValue();
+            //   }
+            // }
 
             function checkError(event) {
               const requiredLength = inputProperties[$input.id].requiredLength;
@@ -539,17 +537,17 @@
                   isValid &&
                   (expDatePrevLength === 4 || expDatePrevLength === 6);
 
-                if (shouldFocusOnNextField) {
-                  $inputs[3].focus();
-                  showCardImage($inputs[3].id);
-                }
+                // if (shouldFocusOnNextField) {
+                //   $inputs[3].focus();
+                //   showCardImage($inputs[3].id);
+                // }
 
-                if (
-                  (event.type === 'blur' && length > requiredLength) ||
-                  shouldFocusOnNextField
-                ) {
-                  $input.value = $input.value.replace('/20', '/errors');
-                }
+                // if (
+                //   (event.type === 'blur' && length > requiredLength) ||
+                //   shouldFocusOnNextField
+                // ) {
+                //   $input.value = $input.value.replace('/20', '/errors');
+                // }
 
                 updateExpDateValue(expMonth, expYear);
                 expirationDateMask.updateValue();
@@ -568,9 +566,7 @@
                 $cardInput = $inputs[1];
                 const cardNumber = document.querySelector('.number-input');
                 const cleanNumber = cardNumberMask.unmaskedValue;
-                console.log(
-                  cleanNumber.length >= 16 && isValidLuhn(cleanNumber)
-                );
+        
                 if (cleanNumber.length >= 16 && isValidLuhn(cleanNumber)) {
                   console.log('suc');
 
@@ -598,7 +594,7 @@
             }
 
             $input.addEventListener('keyup', checkError);
-            $input.addEventListener('blur', onBlurListener);
+            // $input.addEventListener('blur', onBlurListener);
 
             function onBlurListener(event) {
               checkError(event);
@@ -613,15 +609,15 @@
 
           const $input_labels = getElementsArray('.label');
 
-          $input_labels.forEach(labelIterator);
+          // $input_labels.forEach(labelIterator);
 
-          function labelIterator($label) {
-            function clickListener() {
-              $label.previousElementSibling.focus();
-            }
+          // function labelIterator($label) {
+          //   function clickListener() {
+          //     $label.previousElementSibling.focus();
+          //   }
 
-            $label.addEventListener('click', clickListener);
-          }
+          //   $label.addEventListener('click', clickListener);
+          // }
         },
 
         expirationDateListener: function () {
