@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <style>
-      html,
       body {
-        min-height: 100vh; /* Allow growth beyond initial viewport */
-      }
-      section[aria-labelledby='payment-heading'] {
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        -webkit-user-select: auto; /* Allow text selection */
+        user-select: auto;
+        pointer-events: auto; /* Ensure clicks register */
       }
     </style>
   </head>
