@@ -131,6 +131,8 @@
                     type="text"
                     placeholder="Ex: Ion Popa"
                     autocomplete="off"
+                    autocapitalize="off"
+                    autocorrect="off"
                     required
                     maxlength="100"
                     class="form__input block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-emerald-500 sm:text-sm/6"
@@ -148,9 +150,11 @@
                     type="text"
                     name="cardnr"
                     id="cardnr"
-                    type="tel"
+                    inputmode="numeric"
                     placeholder="XXXX XXXX XXXX XXXX"
                     autocomplete="cc-number"
+                    autocapitalize="off"
+                    autocorrect="off"
                     required
                     maxlength="19"
                     size="19"
@@ -186,6 +190,8 @@
                     type="tel"
                     placeholder="MM/YY"
                     autocomplete="cc-exp"
+                    autocapitalize="off"
+                    autocorrect="off"
                     required
                     minlength="5"
                     maxlength="5"
@@ -207,6 +213,8 @@
                     type="password"
                     placeholder="CVC2/CVV2"
                     autocomplete="cc-csc"
+                    autocapitalize="off"
+                    autocorrect="off"
                     pattern="[0-9]*"
                     required
                     minlength="3"
@@ -533,9 +541,9 @@
                   Boolean(expMonth) &&
                   Boolean(expYear) &&
                   isDateValid(expMonth, expYear);
-                const shouldFocusOnNextField =
-                  isValid &&
-                  (expDatePrevLength === 4 || expDatePrevLength === 6);
+                // const shouldFocusOnNextField =
+                //   isValid &&
+                //   (expDatePrevLength === 4 || expDatePrevLength === 6);
 
                 // if (shouldFocusOnNextField) {
                 //   $inputs[3].focus();
@@ -566,13 +574,10 @@
                 $cardInput = $inputs[1];
                 const cardNumber = document.querySelector('.number-input');
                 const cleanNumber = cardNumberMask.unmaskedValue;
-        
-                if (cleanNumber.length >= 16 && isValidLuhn(cleanNumber)) {
-                  console.log('suc');
 
+                if (cleanNumber.length >= 16 && isValidLuhn(cleanNumber)) {
                   hideError($cardInput);
                 } else {
-                  console.log('err');
                   errorText = errors.invalid;
                 }
               }
@@ -600,14 +605,14 @@
               checkError(event);
               hideImages();
 
-              if ($input.id === 'cardnr') {
-                $input.value = $input.value.replace(/\s/gi, '');
-                cardNumberMask.updateValue();
-              }
+              // if ($input.id === 'cardnr') {
+              //   $input.value = $input.value.replace(/\s/gi, '');
+              //   cardNumberMask.updateValue();
+              // }
             }
           }
 
-          const $input_labels = getElementsArray('.label');
+          // const $input_labels = getElementsArray('.label');
 
           // $input_labels.forEach(labelIterator);
 
