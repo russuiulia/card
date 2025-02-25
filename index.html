@@ -2,13 +2,16 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <style>
       html,
       body {
         min-height: 100vh; /* Allow growth beyond initial viewport */
-        touch-action: manipulation;
+        /* touch-action: manipulation; */
       }
       section[aria-labelledby='payment-heading'] {
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
@@ -49,7 +52,9 @@
               <div class="w-full border-t border-gray-200"></div>
             </div>
             <div class="relative flex justify-center">
-              <span class="bg-white px-4 text-sm font-medium text-gray-500">or</span>
+              <span class="bg-white px-4 text-sm font-medium text-gray-500"
+                >or</span
+              >
             </div>
           </div>
 
@@ -59,7 +64,11 @@
 
               <!-- Name on card -->
               <div class="col-span-full">
-                <label for="name-on-card" class="block text-sm/6 font-medium text-gray-700">Name on card</label>
+                <label
+                  for="name-on-card"
+                  class="block text-sm/6 font-medium text-gray-700"
+                  >Name on card</label
+                >
                 <div class="mt-2">
                   <input
                     type="text"
@@ -73,7 +82,11 @@
 
               <!-- Card number -->
               <div class="col-span-full">
-                <label for="card-number" class="block text-sm/6 font-medium text-gray-700">Card number</label>
+                <label
+                  for="card-number"
+                  class="block text-sm/6 font-medium text-gray-700"
+                  >Card number</label
+                >
                 <div class="mt-2">
                   <input
                     type="text"
@@ -87,7 +100,11 @@
 
               <!-- Expiration date -->
               <div class="col-span-8 sm:col-span-9">
-                <label for="expiration-date" class="block text-sm/6 font-medium text-gray-700">Expiration date (MM/YY)</label>
+                <label
+                  for="expiration-date"
+                  class="block text-sm/6 font-medium text-gray-700"
+                  >Expiration date (MM/YY)</label
+                >
                 <div class="mt-2">
                   <input
                     type="text"
@@ -101,7 +118,11 @@
 
               <!-- CVC -->
               <div class="col-span-4 sm:col-span-3">
-                <label for="cvc" class="block text-sm/6 font-medium text-gray-700">CVC</label>
+                <label
+                  for="cvc"
+                  class="block text-sm/6 font-medium text-gray-700"
+                  >CVC</label
+                >
                 <div class="mt-2">
                   <input
                     type="text"
@@ -124,8 +145,14 @@
         </div>
       </section>
     </main>
-
     <script>
+      document.addEventListener('click', function (event) {
+        if (!event.target.closest('input, button, select, textarea')) {
+          document.activeElement.blur();
+        }
+      });
+    </script>
+    <!-- <script>
       // Detect clicks outside the input fields to dismiss the keyboard
       document.addEventListener("click", function(event) {
         const inputFields = document.querySelectorAll("input");
@@ -136,6 +163,6 @@
           document.activeElement.blur();  // This will blur the focused element (dismiss keyboard)
         }
       });
-    </script>
+    </script> -->
   </body>
 </html>
