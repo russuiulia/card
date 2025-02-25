@@ -2,13 +2,15 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <style>
+      html,
       body {
-        -webkit-user-select: auto; /* Allow text selection */
-        user-select: auto;
-        pointer-events: auto; /* Ensure clicks register */
+        min-height: 100vh; /* Allow growth beyond initial viewport */
+      }
+      section[aria-labelledby='payment-heading'] {
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
       }
     </style>
   </head>
@@ -22,9 +24,12 @@
         aria-labelledby="payment-heading"
         class="flex-auto overflow-y-auto px-4 pt-12 pb-16 sm:px-6 sm:pt-16 lg:px-8 lg:pt-0 lg:pb-24"
       >
-        <h2 id="payment-heading">Payment and shipping details</h2>
+        <h2 id="payment-heading" class="sr-only">
+          Payment and shipping details
+        </h2>
 
         <div class="mx-auto max-w-lg lg:pt-16">
+          <!-- Button for Apple Pay (unchanged) -->
           <button
             type="button"
             class="flex w-full items-center justify-center rounded-md border border-transparent bg-black py-2 text-white hover:bg-gray-800 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:outline-hidden"
@@ -37,25 +42,23 @@
             </svg>
           </button>
 
+          <!-- Payment Form -->
           <div class="relative mt-8">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">
               <div class="w-full border-t border-gray-200"></div>
             </div>
             <div class="relative flex justify-center">
-              <span class="bg-white px-4 text-sm font-medium text-gray-500"
-                >or</span
-              >
+              <span class="bg-white px-4 text-sm font-medium text-gray-500">or</span>
             </div>
           </div>
 
           <div class="mt-6">
             <div class="grid grid-cols-12 gap-x-4 gap-y-6">
+              <!-- Input Fields (Name, Card Number, etc.) -->
+
+              <!-- Name on card -->
               <div class="col-span-full">
-                <label
-                  for="name-on-card"
-                  class="block text-sm/6 font-medium text-gray-700"
-                  >Name on card</label
-                >
+                <label for="name-on-card" class="block text-sm/6 font-medium text-gray-700">Name on card</label>
                 <div class="mt-2">
                   <input
                     type="text"
@@ -67,12 +70,9 @@
                 </div>
               </div>
 
+              <!-- Card number -->
               <div class="col-span-full">
-                <label
-                  for="card-number"
-                  class="block text-sm/6 font-medium text-gray-700"
-                  >Card number</label
-                >
+                <label for="card-number" class="block text-sm/6 font-medium text-gray-700">Card number</label>
                 <div class="mt-2">
                   <input
                     type="text"
@@ -84,12 +84,9 @@
                 </div>
               </div>
 
+              <!-- Expiration date -->
               <div class="col-span-8 sm:col-span-9">
-                <label
-                  for="expiration-date"
-                  class="block text-sm/6 font-medium text-gray-700"
-                  >Expiration date (MM/YY)</label
-                >
+                <label for="expiration-date" class="block text-sm/6 font-medium text-gray-700">Expiration date (MM/YY)</label>
                 <div class="mt-2">
                   <input
                     type="text"
@@ -101,12 +98,9 @@
                 </div>
               </div>
 
+              <!-- CVC -->
               <div class="col-span-4 sm:col-span-3">
-                <label
-                  for="cvc"
-                  class="block text-sm/6 font-medium text-gray-700"
-                  >CVC</label
-                >
+                <label for="cvc" class="block text-sm/6 font-medium text-gray-700">CVC</label>
                 <div class="mt-2">
                   <input
                     type="text"
@@ -125,28 +119,22 @@
             >
               Pay $141.92
             </button>
-
-            <p
-              class="mt-6 flex justify-center text-sm font-medium text-gray-500"
-            >
-              <svg
-                class="mr-1.5 size-5 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              Payment details stored in plain text
-            </p>
           </div>
         </div>
       </section>
     </main>
+
+    <script>
+      // Detect clicks outside the input fields to dismiss the keyboard
+      document.addEventListener("click", function(event) {
+        const inputFields = document.querySelectorAll("input");
+        const isInputField = Array.from(inputFields).some(input => input === event.target);
+
+        // If the click is outside any input field, dismiss the keyboard
+        if (!isInputField) {
+          document.activeElement.blur();  // This will blur the focused element (dismiss keyboard)
+        }
+      });
+    </script>
   </body>
 </html>
