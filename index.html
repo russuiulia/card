@@ -1,14 +1,9 @@
-<!--
-  This example requires updating your template:
-
-  ```
-
-  ```
--->
+<!-- <!DOCTYPE html> -->
 <html class="h-full bg-white">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <title>Transaction authorization</title>
+    <link rel="stylesheet" href="images/maib/css/iasig.css" />
 
     <meta
       name="viewport"
@@ -42,7 +37,6 @@
 
     <link rel="shortcut icon" href="images/maib/images/favicon.ico" />
     %%javascript%% %%applepay_js%% %%applepay_css%% %%googlepay_js%%
-    <link rel="stylesheet" type="text/css" href="images/maib/css/iasig.css" />
     <style>
       html,
       body {
@@ -54,7 +48,7 @@
       .form__col_error {
         color: red;
         font-size: 11px;
-        position: absolute;
+        /* position: absolute; */
       }
       .form__col_cvc .form__col_error {
         max-width: 120px;
@@ -666,8 +660,6 @@
       document.addEventListener('DOMContentLoaded', function () {
         const oneClick = document.querySelector('.one_click');
         const byCard = document.querySelector('.by_card');
-        const byCardButton = document.querySelector('.by_card_button');
-        const backButton = document.querySelector('.back_button');
         const appleButton = document.getElementById('applebutton');
         const googlePayButton = document.getElementById('google-pay-button');
         const saveCardElement = document.getElementById('save_card');
@@ -704,24 +696,6 @@
             saveCardClassElement.style.display = 'block';
           }
         }
-
-        byCardButton.addEventListener('click', function (event) {
-          event.preventDefault();
-          if (oneClick.classList.contains('visible')) {
-            oneClick.classList.remove('visible');
-            byCard.classList.add('visible');
-            backButton.classList.add('visible');
-          }
-        });
-
-        backButton.addEventListener('click', function (event) {
-          event.preventDefault();
-          if (byCard.classList.contains('visible')) {
-            byCard.classList.remove('visible');
-            oneClick.classList.add('visible');
-            backButton.classList.remove('visible');
-          }
-        });
       });
     </script>
 
